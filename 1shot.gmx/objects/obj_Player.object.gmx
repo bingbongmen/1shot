@@ -58,8 +58,9 @@ vpoint = gamepad_axis_value(0, gp_axisrv);
 
 direction = point_direction(0, 0, haxis, vaxis);
 speed = point_distance(0 ,0, haxis, vaxis) * 10;
-
-image_angle = point_direction(obj_Player.x/16, obj_Player.y/16, 360*hpoint, 360*vpoint);
+if(hpoint !=0 || vpoint !=0){
+image_angle = point_direction(0, 0, hpoint, vpoint);
+}
 </string>
           </argument>
         </arguments>
