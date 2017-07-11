@@ -78,7 +78,7 @@ gameStart = 0;
     }
 }
 
-if(((player1Shot=0)&amp;&amp;(player2Shot=0)) &amp;&amp; (instance_number(obj_p1Bullet)=0) &amp;&amp; (instance_number(obj_p2Bullet)=0) &amp;&amp; (gameStart = 1)){
+if((player1Shot=0) &amp;&amp; (player2Shot=0) &amp;&amp; (instance_number(obj_p1Bullet)=0) &amp;&amp; (instance_number(obj_p2Bullet)=0) &amp;&amp; (gameStart = 1)){
     player1Ready = 0;
     player2Ready = 0;
     gameStart = 0;
@@ -121,8 +121,8 @@ if(gameStart = 0){
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>draw_text(obj_Player1.x-6,obj_Player1.y-48,string(p1Score));
-draw_text(obj_Player2.x-6,obj_Player2.y-48,string(p2Score));
+            <string>draw_text(obj_Player1.x-6,obj_Player1.y-40,string(p1Score));
+draw_text(obj_Player2.x-6,obj_Player2.y-40,string(p2Score));
 
 if(gameStart = 0){
     if(player1Ready = 0){

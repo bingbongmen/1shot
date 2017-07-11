@@ -25,8 +25,7 @@
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>if(levelNumber = 1){
-obj_Player1.x = 32;
+            <string>obj_Player1.x = 32;
 obj_Player1.y = 256;
 obj_Player2.x = 480;
 obj_Player2.y = 256;
@@ -35,7 +34,6 @@ player2Shot = 1;
 player1Ready = 0;
 player2Ready = 0;
 gameStart = 1;
-}
 instance_destroy();
 </string>
           </argument>
