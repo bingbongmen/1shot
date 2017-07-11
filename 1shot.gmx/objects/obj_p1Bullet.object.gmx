@@ -25,7 +25,10 @@
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>direction = global.p1Point;
+            <string>//Gets direction to move from P1s image angle
+direction = global.p1Point;
+
+//Speed
 speed = 3;
 </string>
           </argument>
@@ -72,7 +75,8 @@ speed = 3;
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>if(gameStart = 1){
+            <string>//If in game add score and pull ready check
+if(gameStart = 1){
     gameStart = 0;
     p1Score++;
 }

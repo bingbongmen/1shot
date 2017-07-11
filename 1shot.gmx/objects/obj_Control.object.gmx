@@ -25,9 +25,8 @@
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>globalvar gameStart, p1Point, p2Point, player1Shot, player2Shot, player1Ready, player2Ready levelNumber, p1Score, p2Score;
-if gamepad_is_connected(0) gamepad_set_axis_deadzone(0, 0.25);
-if gamepad_is_connected(1) gamepad_set_axis_deadzone(1, 0.25);
+            <string>//Variable inits
+globalvar gameStart, p1Point, p2Point, player1Shot, player2Shot, player1Ready, player2Ready levelNumber, p1Score, p2Score;
 player1Shot = 0;
 player2Shot = 0;
 player1Ready = 0;
@@ -38,6 +37,10 @@ p1Score = 0;
 p2Score = 0;
 levelNumber = 0;
 gameStart = 0;
+
+//Deadzone (if it works)
+if gamepad_is_connected(0) gamepad_set_axis_deadzone(0, 0.25);
+if gamepad_is_connected(1) gamepad_set_axis_deadzone(1, 0.25);
 
 
 
@@ -63,7 +66,8 @@ gameStart = 0;
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>if(levelNumber = 0){
+            <string>//Menu ready check
+if(levelNumber = 0){
     if((player1Ready = 0) &amp;&amp; (gamepad_button_check_pressed(0, gp_face1))){
         player1Ready = 1;
     }
@@ -78,12 +82,14 @@ gameStart = 0;
     }
 }
 
+//Sets round to end if both players out of ammo and all shots completed
 if((player1Shot&lt;=0) &amp;&amp; (player2Shot&lt;=0) &amp;&amp; (instance_number(obj_p1Bullet)=0) &amp;&amp; (instance_number(obj_p2Bullet)=0) &amp;&amp; (gameStart = 1)){
     player1Ready = 0;
     player2Ready = 0;
     gameStart = 0;
 }
 
+//Ready Check if round is over
 if(gameStart = 0){
 
     if((player1Ready = 0) &amp;&amp; (gamepad_button_check_pressed(0, gp_face1))){
@@ -99,16 +105,15 @@ if(gameStart = 0){
     }
 }
 
-if (gamepad_button_check_pressed(0, gp_start))
+//Fullscreen 
+if ((gamepad_button_check_pressed(0, gp_select)) || gamepad_button_check_pressed(1, gp_select))
 {
-if window_get_fullscreen()
-{
-window_set_fullscreen(false);
-}
-else
-{
-window_set_fullscreen(true);
-}
+    if window_get_fullscreen(){
+        window_set_fullscreen(false);
+    }
+    else{
+        window_set_fullscreen(true);
+    }
 }
 </string>
           </argument>
@@ -132,10 +137,12 @@ window_set_fullscreen(true);
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>draw_set_colour(c_blue);
+            <string>//Draw score
+draw_set_colour(c_blue);
 draw_text(obj_Player1.x-6,obj_Player1.y-40,string(p1Score));
 draw_text(obj_Player2.x-6,obj_Player2.y-40,string(p2Score));
 
+//Player ammo draws
 if(player1Shot = 1){
 draw_set_colour(c_red);
 draw_circle(obj_Player1.x-1, obj_Player1.y-1, 18, 1);
@@ -145,6 +152,8 @@ if(player2Shot = 1){
 draw_set_colour(c_red);
 draw_circle(obj_Player2.x-1, obj_Player2.y-1, 18, 1);
 }
+
+//Player ready displays
 if(gameStart = 0){
     if(player1Ready = 0){
         draw_sprite(spr_notReady,0,obj_Player1.x,obj_Player1.y)

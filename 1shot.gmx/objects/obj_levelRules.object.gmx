@@ -25,7 +25,9 @@
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>obj_Player1.x = 32;
+            <string>//Vars to set at start of each map. 
+//SET IFS FOR EACH ROOM RULES (TO DO)
+obj_Player1.x = 32;
 obj_Player1.y = 256;
 obj_Player2.x = 480;
 obj_Player2.y = 256;

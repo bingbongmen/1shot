@@ -12,6 +12,10 @@
     <sprite>sprites\spr_Bullet</sprite>
     <sprite>sprites\spr_Ready</sprite>
     <sprite>sprites\spr_notReady</sprite>
+    <sprite>sprites\spr_arrowLeftS</sprite>
+    <sprite>sprites\spr_arrowRightS</sprite>
+    <sprite>sprites\spr_arrowLeft</sprite>
+    <sprite>sprites\spr_arrowRight</sprite>
   </sprites>
   <backgrounds name="background"/>
   <paths name="paths"/>
