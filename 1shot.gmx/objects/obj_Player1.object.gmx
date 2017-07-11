@@ -64,8 +64,10 @@ vspd = vaxis*1.0;
 
 //Wall CC
 if(place_meeting(x+hspd, y, obj_Wall)){
-    while(!place_meeting(x+sign(hspd), y, obj_Wall)){
+    var i=0;  
+    while(!place_meeting(x+sign(hspd), y, obj_Wall)&amp;&amp;(i&lt;abs(hspd))){
         x += sign(hspd);
+        i++;
     }
     hspd = 0;
 }
@@ -73,8 +75,10 @@ if(place_meeting(x+hspd, y, obj_Wall)){
 x += hspd;
 
 if(place_meeting(x, y+vspd, obj_Wall)){
-    while(!place_meeting(x, y+sign(vspd), obj_Wall)){
+    var i=0;
+    while(!place_meeting(x, y+sign(vspd), obj_Wall)&amp;&amp;(i&lt;abs(vspd))){
         y+= sign(vspd);
+        i++;
     }
     vspd = 0;
 }

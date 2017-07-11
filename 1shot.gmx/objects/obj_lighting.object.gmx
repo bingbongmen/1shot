@@ -25,7 +25,7 @@
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>ambient_light = 0.3;
+            <string>ambient_light = 0.5;
 
 light_surface = surface_create(view_wview, view_hview);
 
@@ -86,8 +86,8 @@ shader_reset();
 draw_clear_alpha(c_black, 1);
 draw_set_blend_mode(bm_add);
 
-draw_sprite(spr_light_generic, 0, obj_Player1.x, obj_Player1.y);
-draw_sprite(spr_light_generic, 0, obj_Player2.x, obj_Player2.y);
+draw_sprite_ext(spr_light_generic, 0, obj_Player1.x, obj_Player1.y,1,1,0,c_blue,1);
+draw_sprite_ext(spr_light_generic, 0, obj_Player2.x, obj_Player2.y,1,1,0,c_red,1);
 with(obj_light)
 {
  draw_self();
