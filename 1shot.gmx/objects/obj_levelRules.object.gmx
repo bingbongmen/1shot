@@ -26,17 +26,20 @@
           <argument>
             <kind>1</kind>
             <string>//Vars to set at start of each map. 
-//SET IFS FOR EACH ROOM RULES (TO DO)
-obj_Player1.x = 32;
-obj_Player1.y = 256;
-obj_Player2.x = 480;
-obj_Player2.y = 256;
-player1Shot = 1;
-player2Shot = 1;
-player1Ready = 0;
-player2Ready = 0;
-gameStart = 1;
-instance_destroy();
+if(levelNumber = 1){
+    obj_Player1.x = 32;
+    obj_Player1.y = 256;
+    obj_Player2.x = 480;
+    obj_Player2.y = 256;
+    player1Shot = 1;
+    player2Shot = 1;
+    player1Ready = 0;
+    player2Ready = 0;
+    gameStart = 1;
+    room_width = 512;
+    room_height = 512;
+    instance_destroy();
+}
 </string>
           </argument>
         </arguments>
