@@ -78,7 +78,7 @@ gameStart = 0;
     }
 }
 
-if((player1Shot=0) &amp;&amp; (player2Shot=0) &amp;&amp; (instance_number(obj_p1Bullet)=0) &amp;&amp; (instance_number(obj_p2Bullet)=0) &amp;&amp; (gameStart = 1)){
+if((player1Shot&lt;=0) &amp;&amp; (player2Shot&lt;=0) &amp;&amp; (instance_number(obj_p1Bullet)=0) &amp;&amp; (instance_number(obj_p2Bullet)=0) &amp;&amp; (gameStart = 1)){
     player1Ready = 0;
     player2Ready = 0;
     gameStart = 0;
