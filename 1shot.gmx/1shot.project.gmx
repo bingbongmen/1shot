@@ -24,7 +24,8 @@
     <object>objects\obj_Player2</object>
     <object>objects\obj_Wall</object>
     <object>objects\obj_levelRules</object>
-    <object>objects\obj_Bullet</object>
+    <object>objects\obj_p1Bullet</object>
+    <object>objects\obj_p2Bullet</object>
   </objects>
   <rooms name="rooms">
     <room>rooms\rm_Lobby</room>

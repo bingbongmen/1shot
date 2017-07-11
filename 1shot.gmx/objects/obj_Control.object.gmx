@@ -25,13 +25,17 @@
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>globalvar gameStart, player1Shot, player2Shot, player1Ready, player2Ready levelNumber;
+            <string>globalvar gameStart, p1Point, p2Point, player1Shot, player2Shot, player1Ready, player2Ready levelNumber, p1Score, p2Score;
 if gamepad_is_connected(0) gamepad_set_axis_deadzone(0, 0.25);
 if gamepad_is_connected(1) gamepad_set_axis_deadzone(1, 0.25);
 player1Shot = 0;
 player2Shot = 0;
 player1Ready = 0;
 player2Ready = 0;
+p1Point = 0;
+p2Point = 0;
+p1Score = 0;
+p2Score = 0;
 levelNumber = 0;
 gameStart = 0;
 
@@ -74,7 +78,7 @@ gameStart = 0;
     }
 }
 
-if(((player1Shot=0)&amp;&amp;(player2Shot=0)) &amp;&amp; (instance_number(obj_Bullet)=0) &amp;&amp; (gameStart = 1)){
+if(((player1Shot=0)&amp;&amp;(player2Shot=0)) &amp;&amp; (instance_number(obj_p1Bullet)=0) &amp;&amp; (instance_number(obj_p2Bullet)=0) &amp;&amp; (gameStart = 1)){
     player1Ready = 0;
     player2Ready = 0;
     gameStart = 0;
@@ -117,7 +121,10 @@ if(gameStart = 0){
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>if(gameStart = 0){
+            <string>draw_text(obj_Player1.x-6,obj_Player1.y-48,string(p1Score));
+draw_text(obj_Player2.x-6,obj_Player2.y-48,string(p2Score));
+
+if(gameStart = 0){
     if(player1Ready = 0){
         draw_sprite(spr_notReady,0,obj_Player1.x,obj_Player1.y)
      }
