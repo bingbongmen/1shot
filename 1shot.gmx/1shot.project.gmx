@@ -9,6 +9,9 @@
     <sprite>sprites\spr_Player1</sprite>
     <sprite>sprites\spr_Player2</sprite>
     <sprite>sprites\spr_Brick</sprite>
+    <sprite>sprites\spr_Bullet</sprite>
+    <sprite>sprites\spr_Ready</sprite>
+    <sprite>sprites\spr_notReady</sprite>
   </sprites>
   <backgrounds name="background"/>
   <paths name="paths"/>
@@ -21,6 +24,7 @@
     <object>objects\obj_Player2</object>
     <object>objects\obj_Wall</object>
     <object>objects\obj_levelRules</object>
+    <object>objects\obj_Bullet</object>
   </objects>
   <rooms name="rooms">
     <room>rooms\rm_Lobby</room>
