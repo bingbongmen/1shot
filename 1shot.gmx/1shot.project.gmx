@@ -6,16 +6,23 @@
   <NewExtensions/>
   <sounds name="sound"/>
   <sprites name="sprites">
-    <sprite>sprites\spr_Player</sprite>
+    <sprite>sprites\spr_Player1</sprite>
+    <sprite>sprites\spr_Player2</sprite>
+    <sprite>sprites\spr_Brick</sprite>
   </sprites>
   <backgrounds name="background"/>
   <paths name="paths"/>
+  <scripts name="scripts">
+    <script>scripts\scr_playerCreate.gml</script>
+  </scripts>
   <objects name="objects">
     <object>objects\obj_Control</object>
-    <object>objects\obj_Player</object>
+    <object>objects\obj_Player1</object>
+    <object>objects\obj_Player2</object>
+    <object>objects\obj_Wall</object>
   </objects>
   <rooms name="rooms">
-    <room>rooms\room0</room>
+    <room>rooms\rm_Game</room>
   </rooms>
   <help>
     <rtf>help.rtf</rtf>
