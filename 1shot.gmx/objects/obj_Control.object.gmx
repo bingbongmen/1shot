@@ -26,7 +26,7 @@
           <argument>
             <kind>1</kind>
             <string>//Variable inits
-globalvar gameStart, p1Point, p2Point, player1Shot, player2Shot, player1Ready, player2Ready levelNumber, p1Score, p2Score, menuOption;
+globalvar gameStart, p1Point, p2Point, player1Shot, player2Shot, player1Ready, player2Ready levelNumber, p1Score, p2Score, menuOption, pointsToWin;
 player1Shot = 0;
 player2Shot = 0;
 player1Ready = 0;
@@ -40,6 +40,8 @@ gameStart = 0;
 menuOption = 0;
 minMenuOptions = 0; //always 0
 maxMenuOptions = 6;
+pointsToWin = 3;
+
 //Deadzone (if it works)
 if gamepad_is_connected(0) gamepad_set_axis_deadzone(0, 0.25);
 if gamepad_is_connected(1) gamepad_set_axis_deadzone(1, 0.25);
@@ -68,8 +70,22 @@ if gamepad_is_connected(1) gamepad_set_axis_deadzone(1, 0.25);
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>//Menu button selection var
+            <string>//player win check and treating
+if(levelNumber != 0){
+    if((p1Score &gt;= Points to win) &amp;&amp; (gamepad_button_check_pressed(0, gp_select)){
+        p1Score = 0;
+        p2Score = 0;
+        levelNumber = 0;
+    }
+    if((p2Score &gt;= Points to win) &amp;&amp; (gamepad_button_check_pressed(1, gp_select)){
+        p1Score = 0;
+        p2Score = 0;
+        levelNumber = 0;
+    }
+}
+//Menu button selection var
 if(levelNumber = 0){
+    //option selects
     if((gamepad_button_check_pressed(0, gp_padd)) || (gamepad_button_check_pressed(1, gp_padd))){
         menuOption += 2;
         if(menuOption &gt; maxMenuOptions){
@@ -92,6 +108,19 @@ if(levelNumber = 0){
         menuOption += 1;
         if(menuOption &gt; maxMenuOptions){
             menuOption = maxMenuOptions;
+        }
+    }
+    //change vars
+    if((gamepad_button_check_pressed(0, gp_face3)) || (gamepad_button_check_pressed(1, gp_face3))){
+        //points to win
+        if(menuOption = 1){
+            pointsToWin--;
+            if(pointsToWin &lt;= 0){
+                pointsToWin = 1;
+            }
+        }
+        if(menuOption = 2){
+            pointsToWin++;
         }
     }
 }
@@ -203,6 +232,8 @@ if(gameStart = 0){
 //Draw menu and options
 if(levelNumber = 0){
     draw_sprite(spr_arrowLeft,0,32,64);
+    draw_text(48,40,"Points To Win");
+    draw_text(108,72,string(pointsToWin));
     draw_sprite(spr_arrowRight,0,160,64);
     draw_sprite(spr_arrowLeft,0,32,160);
     draw_sprite(spr_arrowRight,0,160,160);
