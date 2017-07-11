@@ -28,6 +28,7 @@
             <string>//Gets direction to move from P1s image angle
 direction = global.p1Point;
 
+image_angle = direction;
 //Speed
 speed = 3;
 </string>
