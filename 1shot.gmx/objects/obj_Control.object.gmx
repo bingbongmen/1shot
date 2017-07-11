@@ -121,9 +121,19 @@ if(gameStart = 0){
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>draw_text(obj_Player1.x-6,obj_Player1.y-40,string(p1Score));
+            <string>draw_set_colour(c_blue);
+draw_text(obj_Player1.x-6,obj_Player1.y-40,string(p1Score));
 draw_text(obj_Player2.x-6,obj_Player2.y-40,string(p2Score));
 
+if(player1Shot = 1){
+draw_set_colour(c_red);
+draw_circle(obj_Player1.x-1, obj_Player1.y-1, 18, 1);
+}
+
+if(player2Shot = 1){
+draw_set_colour(c_red);
+draw_circle(obj_Player2.x-1, obj_Player2.y-1, 18, 1);
+}
 if(gameStart = 0){
     if(player1Ready = 0){
         draw_sprite(spr_notReady,0,obj_Player1.x,obj_Player1.y)
