@@ -20,9 +20,11 @@
     <object>objects\obj_Player1</object>
     <object>objects\obj_Player2</object>
     <object>objects\obj_Wall</object>
+    <object>objects\obj_levelRules</object>
   </objects>
   <rooms name="rooms">
-    <room>rooms\rm_Game</room>
+    <room>rooms\rm_Lobby</room>
+    <room>rooms\rm_Level1</room>
   </rooms>
   <help>
     <rtf>help.rtf</rtf>
