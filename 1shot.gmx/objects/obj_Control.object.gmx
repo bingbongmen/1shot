@@ -70,17 +70,23 @@ if gamepad_is_connected(1) gamepad_set_axis_deadzone(1, 0.25);
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>//player win check and treating
+            <string>//init
+if(room = rm_Create){
+    room_goto(rm_Lobby);
+}
+//player win check and treating
 if(levelNumber != 0){
-    if((p1Score &gt;= Points to win) &amp;&amp; (gamepad_button_check_pressed(0, gp_select)){
+    if((p1Score &gt;= pointsToWin) &amp;&amp; ((gamepad_button_check_pressed(0, gp_shoulderrb)) || (gamepad_button_check_pressed(0, gp_shoulderlb)))){
         p1Score = 0;
         p2Score = 0;
         levelNumber = 0;
+        room_goto(rm_Lobby);        
     }
-    if((p2Score &gt;= Points to win) &amp;&amp; (gamepad_button_check_pressed(1, gp_select)){
+    if((p2Score &gt;= pointsToWin) &amp;&amp; ((gamepad_button_check_pressed(1, gp_shoulderrb)) || (gamepad_button_check_pressed(1, gp_shoulderlb)))){
         p1Score = 0;
         p2Score = 0;
         levelNumber = 0;
+        room_goto(rm_Lobby);
     }
 }
 //Menu button selection var
@@ -257,6 +263,18 @@ if(levelNumber = 0){
     }
     if(menuOption = 6){
         draw_sprite(spr_arrowRightS,0,160,256);
+    }
+}
+
+//Draw Winner text
+if(room != rm_Lobby){
+    if(p1Score &gt;= pointsToWin){
+        draw_text(obj_Player1.x-20,obj_Player1.y+40,"P1 WINS");
+        draw_text(obj_Player1.x-85,obj_Player1.y+50,"Press shoulder button to leave");
+    }
+    if(p2Score &gt;= pointsToWin){
+        draw_text(obj_Player2.x-16,obj_Player2.y+40,"P2 WINS");
+        draw_text(obj_Player2.x-85,obj_Player2.y+50,"Press shoulder button to leave");
     }
 }
 </string>

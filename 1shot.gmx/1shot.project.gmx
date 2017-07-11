@@ -38,6 +38,7 @@
     <object>objects\obj_lighting</object>
   </objects>
   <rooms name="rooms">
+    <room>rooms\rm_Create</room>
     <room>rooms\rm_Lobby</room>
     <room>rooms\rm_Level1</room>
   </rooms>
