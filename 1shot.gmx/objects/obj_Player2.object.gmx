@@ -55,8 +55,8 @@ hpoint = gamepad_axis_value(1, gp_axisrh);
 vpoint = gamepad_axis_value(1, gp_axisrv);
 
 
-hspd = haxis*10;
-vspd = vaxis*10;
+hspd = haxis*1.0;
+vspd = vaxis*1.0;
 
 if(place_meeting(x+hspd, y, obj_Wall)){
     while(!place_meeting(x+sign(hspd), y, obj_Wall)){
