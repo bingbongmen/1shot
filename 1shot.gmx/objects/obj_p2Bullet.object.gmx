@@ -27,6 +27,8 @@
             <kind>1</kind>
             <string>//Pulls direction from p2s image angle
 direction = global.p2Point;
+
+image_angle = direction;
 //Speed
 speed = 3;
 </string>
