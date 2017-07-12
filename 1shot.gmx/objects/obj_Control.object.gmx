@@ -26,7 +26,7 @@
           <argument>
             <kind>1</kind>
             <string>//Variable inits
-globalvar gameStart, p1Point, p2Point, player1Shot, player2Shot, player1Ready, player2Ready levelNumber, p1Score, p2Score, menuOption, pointsToWin;
+globalvar gameStart, p1Point, p2Point, player1Shot, player2Shot, player1Ready, player2Ready levelNumber, p1Score, p2Score, menuOption, pointsToWin, lightingOn;
 player1Shot = 0;
 player2Shot = 0;
 player1Ready = 0;
@@ -41,6 +41,7 @@ menuOption = 0;
 minMenuOptions = 0; //always 0
 maxMenuOptions = 6;
 pointsToWin = 3;
+lightingOn = 0;
 
 //Deadzone (if it works)
 if gamepad_is_connected(0) gamepad_set_axis_deadzone(0, 0.25);
@@ -115,6 +116,14 @@ if(levelNumber = 0){
         if(menuOption = 1){
             pointsToWin -= 1;
         }
+        if(menuOption = 5){
+            if(instance_exists(obj_Lighting)){
+            with(obj_Lighting){
+                instance_destroy();
+            }
+            }
+            lightingOn = 0;
+        }
     }
     if((gamepad_button_check_pressed(0, gp_padr)) || (gamepad_button_check_pressed(1, gp_padr))){
         if(menuOption % 2 = 1){
@@ -125,6 +134,12 @@ if(levelNumber = 0){
         }
         if(menuOption = 2){
             pointsToWin += 1;
+        }
+        if(menuOption = 6){
+            if(!instance_exists(obj_Lighting)){
+                instance_create(0,0,obj_Lighting);
+        }
+            lightingOn = 1;
         }
     }
     //change vars
@@ -215,18 +230,18 @@ if ((gamepad_button_check_pressed(0, gp_select)) || gamepad_button_check_pressed
             <kind>1</kind>
             <string>//Draw score
 draw_set_colour(c_blue);
-draw_text(obj_Player1.x-6,obj_Player1.y-40,string(p1Score));
-draw_text(obj_Player2.x-6,obj_Player2.y-40,string(p2Score));
+draw_text(obj_Player1.x-6,obj_Player1.y-50,string(p1Score));
+draw_text(obj_Player2.x-6,obj_Player2.y-50,string(p2Score));
 
 //Player ammo draws
 if(player1Shot = 1){
 draw_set_colour(c_red);
-draw_circle(obj_Player1.x-1, obj_Player1.y-1, 18, 1);
+draw_circle(obj_Player1.x-1, obj_Player1.y-2, 18, 1);
 }
 
 if(player2Shot = 1){
 draw_set_colour(c_red);
-draw_circle(obj_Player2.x-1, obj_Player2.y-1, 18, 1);
+draw_circle(obj_Player2.x-1, obj_Player2.y-2, 18, 1);
 }
 
 //Player ready displays
@@ -248,44 +263,46 @@ if(gameStart = 0){
 
 //Draw menu and options
 if(levelNumber = 0){
-    draw_sprite(spr_arrowLeft,0,32,64);
-    draw_text(48,40,"Points To Win");
-    draw_text(108,72,string(pointsToWin));
-    draw_sprite(spr_arrowRight,0,160,64);
-    draw_sprite(spr_arrowLeft,0,32,160);
-    draw_sprite(spr_arrowRight,0,160,160);
-    draw_sprite(spr_arrowLeft,0,32,256);
-    draw_sprite(spr_arrowRight,0,160,256);
+    draw_sprite(spr_arrowLeft,0,64,128);
+    draw_text(166,80,"Points To Win");
+    draw_text(216, 144,string(pointsToWin));
+    draw_sprite(spr_arrowRight,0,320,128);
+    draw_sprite(spr_arrowLeft,0,64,320);
+    draw_sprite(spr_arrowRight,0,320,320);
+    draw_sprite(spr_arrowLeft,0,64,512);
+    draw_text(166,464,"Lighting");
+    draw_text(216, 528,string(lightingOn));
+    draw_sprite(spr_arrowRight,0,320,512);
     
     if(menuOption = 1){
-        draw_sprite(spr_arrowLeftS,0,32,64);
+        draw_sprite(spr_arrowLeftS,0,64,128);
     }
     if(menuOption = 2){
-        draw_sprite(spr_arrowRightS,0,160,64);
+        draw_sprite(spr_arrowRightS,0,320,128);
     }
     if(menuOption = 3){
-        draw_sprite(spr_arrowLeftS,0,32,160);
+        draw_sprite(spr_arrowLeftS,0,64,320);
     }
     if(menuOption = 4){
-        draw_sprite(spr_arrowRightS,0,160,160);
+        draw_sprite(spr_arrowRightS,0,320,320);
     }
     if(menuOption = 5){
-        draw_sprite(spr_arrowLeftS,0,32,256);
+        draw_sprite(spr_arrowLeftS,0,64,512);
     }
     if(menuOption = 6){
-        draw_sprite(spr_arrowRightS,0,160,256);
+        draw_sprite(spr_arrowRightS,0,320,512);
     }
 }
 
 //Draw Winner text
 if(room != rm_Lobby){
     if(p1Score &gt;= pointsToWin){
-        draw_text(obj_Player1.x-20,obj_Player1.y+40,"P1 WINS");
-        draw_text(obj_Player1.x-85,obj_Player1.y+50,"Press shoulder button to leave");
+        draw_text(obj_Player1.x-40,obj_Player1.y+80,"P1 WINS");
+        draw_text(obj_Player1.x-170,obj_Player1.y+100,"Press shoulder button to leave");
     }
     if(p2Score &gt;= pointsToWin){
-        draw_text(obj_Player2.x-16,obj_Player2.y+40,"P2 WINS");
-        draw_text(obj_Player2.x-85,obj_Player2.y+50,"Press shoulder button to leave");
+        draw_text(obj_Player2.x-40,obj_Player2.y+80,"P2 WINS");
+        draw_text(obj_Player2.x-175,obj_Player2.y+100,"Press shoulder button to leave");
     }
 }
 </string>

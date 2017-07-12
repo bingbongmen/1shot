@@ -15,14 +15,12 @@
     <sprite>sprites\spr_arrowLeftS</sprite>
     <sprite>sprites\spr_arrowRightS</sprite>
     <sprite>sprites\spr_arrowLeft</sprite>
-    <sprite>sprites\spr_light_generic</sprite>
     <sprite>sprites\spr_arrowRight</sprite>
+    <sprite>sprites\spr_light_generic</sprite>
   </sprites>
   <backgrounds name="background"/>
   <paths name="paths"/>
-  <scripts name="scripts">
-    <script>scripts\scr_playerCreate.gml</script>
-  </scripts>
+  <scripts name="scripts"/>
   <shaders name="shaders">
     <shader type="GLSLES">shaders\shd_multiply.shader</shader>
   </shaders>
@@ -34,8 +32,8 @@
     <object>objects\obj_levelRules</object>
     <object>objects\obj_p1Bullet</object>
     <object>objects\obj_p2Bullet</object>
-    <object>objects\obj_light</object>
-    <object>objects\obj_lighting</object>
+    <object>objects\obj_Light</object>
+    <object>objects\obj_Lighting</object>
   </objects>
   <rooms name="rooms">
     <room>rooms\rm_Create</room>

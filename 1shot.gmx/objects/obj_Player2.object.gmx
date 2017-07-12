@@ -25,8 +25,13 @@
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>//Calls basic player var inits
-scr_playerCreate();
+            <string>//basic player var inits
+var haxis = 0;
+var vaxis = 0;
+var hpoint = 0;
+var vpoint = 0;
+var hspd = 0;
+var vspd = 0;
 
 //Points player to enemy (doesn't work)
 image_angle = point_direction(0,0,obj_Player1.x,obj_Player1.y);
@@ -59,8 +64,8 @@ hpoint = gamepad_axis_value(1, gp_axisrh);
 vpoint = gamepad_axis_value(1, gp_axisrv);
 
 //player speed set from stick vars
-hspd = haxis*1.0;
-vspd = vaxis*1.0;
+hspd = haxis*2.0;
+vspd = vaxis*2.0;
 
 //Wall CC
 if(place_meeting(x+hspd, y, obj_Wall)){

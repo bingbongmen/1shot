@@ -4,7 +4,7 @@
   <solid>0</solid>
   <visible>-1</visible>
   <depth>0</depth>
-  <persistent>0</persistent>
+  <persistent>-1</persistent>
   <parentName>&lt;undefined&gt;</parentName>
   <maskName>&lt;undefined&gt;</maskName>
   <events>
@@ -88,7 +88,7 @@ draw_set_blend_mode(bm_add);
 
 draw_sprite_ext(spr_light_generic, 0, obj_Player1.x, obj_Player1.y,1,1,0,c_blue,1);
 draw_sprite_ext(spr_light_generic, 0, obj_Player2.x, obj_Player2.y,1,1,0,c_red,1);
-with(obj_light)
+with(obj_Light)
 {
  draw_self();
 }
