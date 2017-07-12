@@ -103,17 +103,28 @@ if(levelNumber = 0){
         if(menuOption &lt; minMenuOptions){
             menuOption = minMenuOptions;
         }
+        
     }
     if((gamepad_button_check_pressed(0, gp_padl)) || (gamepad_button_check_pressed(1, gp_padl))){
-        menuOption -= 1;
+        if(menuOption % 2 = 0){
+            menuOption -= 1;
+        }
         if(menuOption &lt; minMenuOptions){
             menuOption = minMenuOptions;
         }
+        if(menuOption = 1){
+            pointsToWin -= 1;
+        }
     }
     if((gamepad_button_check_pressed(0, gp_padr)) || (gamepad_button_check_pressed(1, gp_padr))){
-        menuOption += 1;
+        if(menuOption % 2 = 1){
+            menuOption += 1;
+        }
         if(menuOption &gt; maxMenuOptions){
-            menuOption = maxMenuOptions;
+               menuOption = maxMenuOptions;
+        }
+        if(menuOption = 2){
+            pointsToWin += 1;
         }
     }
     //change vars
