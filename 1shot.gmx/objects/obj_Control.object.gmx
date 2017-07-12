@@ -54,6 +54,57 @@ if gamepad_is_connected(1) gamepad_set_axis_deadzone(1, 0.25);
         </arguments>
       </action>
     </event>
+    <event eventtype="2" enumb="1">
+      <action>
+        <libid>1</libid>
+        <id>603</id>
+        <kind>7</kind>
+        <userelative>0</userelative>
+        <isquestion>0</isquestion>
+        <useapplyto>-1</useapplyto>
+        <exetype>2</exetype>
+        <functionname></functionname>
+        <codestring></codestring>
+        <whoName>self</whoName>
+        <relative>0</relative>
+        <isnot>0</isnot>
+        <arguments>
+          <argument>
+            <kind>1</kind>
+            <string>if((player1Ready = 1) &amp;&amp; (player2Ready = 1)){
+    levelNumber = 1;
+    room_goto(rm_Level1);
+}
+</string>
+          </argument>
+        </arguments>
+      </action>
+    </event>
+    <event eventtype="2" enumb="0">
+      <action>
+        <libid>1</libid>
+        <id>603</id>
+        <kind>7</kind>
+        <userelative>0</userelative>
+        <isquestion>0</isquestion>
+        <useapplyto>-1</useapplyto>
+        <exetype>2</exetype>
+        <functionname></functionname>
+        <codestring></codestring>
+        <whoName>self</whoName>
+        <relative>0</relative>
+        <isnot>0</isnot>
+        <arguments>
+          <argument>
+            <kind>1</kind>
+            <string>if((player1Ready = 1) &amp;&amp; (player2Ready = 1)){
+    instance_create(x,y,obj_levelRules);
+}
+</string>
+          </argument>
+        </arguments>
+      </action>
+    </event>
     <event eventtype="3" enumb="0">
       <action>
         <libid>1</libid>
@@ -113,8 +164,12 @@ if(levelNumber = 0){
         if(menuOption &lt; minMenuOptions){
             menuOption = minMenuOptions;
         }
+        
         if(menuOption = 1){
             pointsToWin -= 1;
+            if(pointsToWin &lt;= 0){
+                pointsToWin = 1;
+            }
         }
         if(menuOption = 5){
             if(instance_exists(obj_Lighting)){
@@ -159,17 +214,22 @@ if(levelNumber = 0){
 
 //Menu ready check
 if(levelNumber = 0){
-    if((player1Ready = 0) &amp;&amp; (gamepad_button_check_pressed(0, gp_face1))){
+    if(gamepad_button_check_pressed(0, gp_face1)){
         player1Ready = 1;
     }
-    
-    if((player2Ready = 0) &amp;&amp; (gamepad_button_check_pressed(1, gp_face1))){
+    if(gamepad_button_check_pressed(0, gp_face2)){
+        player1Ready = 0;
+    }
+    if(gamepad_button_check_pressed(1, gp_face1)){
         player2Ready = 1;
     }
-    
+    if(gamepad_button_check_pressed(1, gp_face2)){
+        player2Ready = 0;
+    }
     if((player1Ready = 1) &amp;&amp; (player2Ready = 1)){
-     levelNumber = 1;
-     room_goto(rm_Level1);
+        if(alarm[1]=-1){
+        alarm[1]=75;
+        }
     }
 }
 
@@ -200,7 +260,9 @@ if(gameStart = 0){
     }
     
     if((player1Ready = 1) &amp;&amp; (player2Ready = 1)){
-        instance_create(x,y,obj_levelRules)
+        if(alarm[0]=-1){
+        alarm[0]=75;
+        }
     }
 }
 
