@@ -35,6 +35,8 @@ if(levelNumber = 1){
     player2Shot = 1;
     player1Ready = 0;
     player2Ready = 0;
+    didP1Score = 0;
+    didP2Score = 0;
     gameStart = 1;
     instance_destroy();
 }

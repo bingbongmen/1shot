@@ -80,6 +80,7 @@ speed = 6;
 if(gameStart = 1){
     gameStart = 0;
     p1Score++;
+    didP1Score = 1;
 }
     instance_destroy();
 
