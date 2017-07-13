@@ -440,12 +440,12 @@ if(levelNumber = 0){
 //Draw Winner text
 if(room != rm_Lobby){
     if(p1Score &gt;= pointsToWin){
-        draw_text(obj_Player1.x-40,obj_Player1.y+80,"P1 WINS");
-        draw_text(obj_Player1.x-170,obj_Player1.y+100,"Press shoulder button to leave");
+        draw_text((room_width/2)-30,(room_height/2)-10,"P1 WINS");
+        draw_text((room_width/2)-137,room_height/2,"Press a shoulder button to leave");
     }
     if(p2Score &gt;= pointsToWin){
-        draw_text(obj_Player2.x-40,obj_Player2.y+80,"P2 WINS");
-        draw_text(obj_Player2.x-175,obj_Player2.y+100,"Press shoulder button to leave");
+        draw_text((room_width/2)-30,(room_height/2)-10,"P2 WINS");
+        draw_text((room_width/2)-137,room_height/2,"Press a shoulder button to leave");
     }
 }
 
