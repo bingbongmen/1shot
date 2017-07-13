@@ -230,7 +230,7 @@ if(levelNumber = 0){
     }
     if((player1Ready = 1) &amp;&amp; (player2Ready = 1)){
         if(alarm[1]=-1){
-        alarm[1]=75;
+            alarm[1]=75;
         }
     }
 }
@@ -244,26 +244,27 @@ if((player1Shot&lt;=0) &amp;&amp; (player2Shot&lt;=0) &amp;&amp; (instance_numbe
 
 //Ready Check if round is over
 if(gameStart = 0){
-
-    if(gamepad_button_check_pressed(0, gp_face1)){
-        player1Ready = 1;
-    }
-    
-    if(gamepad_button_check_pressed(0, gp_face2)){
-        player1Ready = 0;
-    }
-    
-    if(gamepad_button_check_pressed(1, gp_face1)){
-        player2Ready = 1;
-    }
-    
-    if(gamepad_button_check_pressed(1, gp_face2)){
-        player2Ready = 0;
-    }
-    
-    if((player1Ready = 1) &amp;&amp; (player2Ready = 1)){
-        if(alarm[0]=-1){
-        alarm[0]=75;
+    if((p1Score || p2Score) &lt; pointsToWin){
+        if(gamepad_button_check_pressed(0, gp_face1)){
+            player1Ready = 1;
+        }
+        
+        if(gamepad_button_check_pressed(0, gp_face2)){
+            player1Ready = 0;
+        }
+        
+        if(gamepad_button_check_pressed(1, gp_face1)){
+            player2Ready = 1;
+        }
+        
+        if(gamepad_button_check_pressed(1, gp_face2)){
+            player2Ready = 0;
+        }
+        
+        if((player1Ready = 1) &amp;&amp; (player2Ready = 1)){
+            if(alarm[0]=-1){
+            alarm[0]=75;
+            }
         }
     }
 }
@@ -346,44 +347,46 @@ if(gameStart = 0){
         }
     }
     else{
-        
-        if(player1Ready = 0){
-            draw_set_alpha(0.3);
-            draw_set_color(c_red);
-            draw_rectangle(0,0,room_width/2,room_height,0);
-            draw_set_alpha(1);
-           //draw_sprite(spr_notReady,0,(room_width/4),room_height/2)
+        if((p1Score || p2Score) &lt; pointsToWin){
+                if(player1Ready = 0){
+                    draw_set_alpha(0.3);
+                    draw_set_color(c_red);
+                    draw_rectangle(0,0,room_width/2,room_height,0);
+                    draw_set_alpha(1);
+                   //draw_sprite(spr_notReady,0,(room_width/4),room_height/2)
+                }
+                if(player1Ready != 0){
+                    draw_set_alpha(0.3);
+                    draw_set_color(c_green);
+                    draw_rectangle(0,0,room_width/2,room_height,0);
+                    draw_set_alpha(1);
+                    //draw_sprite(spr_Ready,0,(room_width/4),room_height/2)
+                }
+               
+                if(player2Ready = 0){
+                    draw_set_alpha(0.3);
+                    draw_set_color(c_red);
+                    draw_rectangle((room_width/2)+1,0,room_width,room_height,0);
+                    draw_set_alpha(1);
+                    //draw_sprite(spr_notReady,0,(room_width/4)*3,room_height/2)
+                }
+                if(player2Ready != 0){
+                    draw_set_alpha(0.3);
+                    draw_set_color(c_green);
+                    draw_rectangle((room_width/2)+1,0,room_width,room_height,0);
+                    draw_set_alpha(1);
+                    //draw_sprite(spr_Ready,0,(room_width/4)*3,room_height/2)
+                }
         }
-        if(player1Ready != 0){
-            draw_set_alpha(0.3);
-            draw_set_color(c_green);
-            draw_rectangle(0,0,room_width/2,room_height,0);
-            draw_set_alpha(1);
-            //draw_sprite(spr_Ready,0,(room_width/4),room_height/2)
-        }
-       
-        if(player2Ready = 0){
-            draw_set_alpha(0.3);
-            draw_set_color(c_red);
-            draw_rectangle((room_width/2)+1,0,room_width,room_height,0);
-            draw_set_alpha(1);
-            //draw_sprite(spr_notReady,0,(room_width/4)*3,room_height/2)
-        }
-        if(player2Ready != 0){
-            draw_set_alpha(0.3);
-            draw_set_color(c_green);
-            draw_rectangle((room_width/2)+1,0,room_width,room_height,0);
-            draw_set_alpha(1);
-            //draw_sprite(spr_Ready,0,(room_width/4)*3,room_height/2)
-        }
+    
         draw_sprite(spr_P1,0,(room_width/4),(room_height/5)-25);
         draw_sprite(spr_P2,0,(room_width/4)*3,(room_height/5)-25);
+        
         if(didP1Score = 1){
             var drawP1Score = asset_get_index("spr_" + string(p1Score));
             draw_sprite_ext(drawP1Score,0,(room_width/4),room_height/2,1,1,0,c_yellow,1);
             var drawP2Score = asset_get_index("spr_" + string(p2Score));
-            draw_sprite(drawP2Score,0,(room_width/4)*3,room_height/2);
-            
+            draw_sprite(drawP2Score,0,(room_width/4)*3,room_height/2);        
         }
         else if(didP2Score = 1){
             var drawP1Score = asset_get_index("spr_" + string(p1Score));
@@ -397,8 +400,8 @@ if(gameStart = 0){
             var drawP2Score = asset_get_index("spr_" + string(p2Score));
             draw_sprite(drawP2Score,0,(room_width/4)*3,room_height/2);
         }
-    }   
-}
+    }
+}   
 
 //Draw menu and options
 if(levelNumber = 0){
