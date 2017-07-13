@@ -5,6 +5,8 @@
 //@ Make sprite size/level size/game size fit natively on all screens based off resolution
     //Make everything like (screen_resh & screen_resw / 50) and stuff ya know
 
+//##GAMEPLAY
+//@ Add nicer char movement with friction or maybe too annoying???    
 //##MENUS
 //@ Check when controllers plugged in and spawn char in respective spot
     //@ dont allow game to start with less than two players
