@@ -134,11 +134,19 @@ if(levelNumber != 0){
         p1Score = 0;
         p2Score = 0;
         levelNumber = 0;
+        obj_Player1.x = 864
+        obj_Player1.y = 160
+        obj_Player2.x = 864
+        obj_Player2.y = 896
         room_goto(rm_Lobby);        
     }
     if((p2Score &gt;= pointsToWin) &amp;&amp; ((gamepad_button_check_pressed(1, gp_shoulderrb)) || (gamepad_button_check_pressed(1, gp_shoulderlb)))){
         p1Score = 0;
         p2Score = 0;
+        obj_Player1.x = 864
+        obj_Player1.y = 160
+        obj_Player2.x = 864
+        obj_Player2.y = 896
         levelNumber = 0;
         room_goto(rm_Lobby);
     }
