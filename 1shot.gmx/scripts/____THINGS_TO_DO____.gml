@@ -7,6 +7,10 @@
 
 //##GAMEPLAY
 //@ Add nicer char movement with friction or maybe too annoying???    
+//@ Fix last pointed direction as it's not very flick friendly.
+    //Try saving current var then through on check on next step see if 0 if so then don't update and use last known var
+    
+
 //##MENUS
 //@ Check when controllers plugged in and spawn char in respective spot
     //@ dont allow game to start with less than two players
