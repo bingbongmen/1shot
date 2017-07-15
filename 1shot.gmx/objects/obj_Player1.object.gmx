@@ -108,8 +108,10 @@ if(hpoint !=0){
 if(hpoint=0){
     hpoint = hpointSave;
 }
+if(vpoint !=0){
+    vpointSave = vpoint;
 }
-if(hpoint=0){
+if(vpoint=0){
     vpoint = vpointSave;
 }
 if(hpoint!=0 || vpoint!=0){
