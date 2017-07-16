@@ -314,6 +314,11 @@ if ((gamepad_button_check_pressed(0, gp_select)) || gamepad_button_check_pressed
 //draw_text(obj_Player1.x-6,obj_Player1.y-50,string(p1Score));
 //draw_text(obj_Player2.x-6,obj_Player2.y-50,string(p2Score));
 
+//var dispH = display_get_width();
+//var dispV = display_get_height();
+//draw_text(0,0,string(dispH));
+//draw_text(60,0,string(dispV));
+
 //Player ammo draws
 if(player1Shot = 1){
 draw_set_colour(c_red);

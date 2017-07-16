@@ -4,6 +4,7 @@
 //@ Online play BOIIIII
 //@ Make sprite size/level size/game size fit natively on all screens based off resolution
     //Make everything like (screen_resh & screen_resw / 50) and stuff ya know
+// Game round timer
 
 //##GAMEPLAY
 //@ Add nicer char movement with friction or maybe too annoying???    
