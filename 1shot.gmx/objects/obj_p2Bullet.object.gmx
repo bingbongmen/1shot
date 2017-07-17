@@ -81,6 +81,8 @@ if(gameStart = 1){
     gameStart = 0;
     p2Score++;
     didP2Score = 1;
+    player1Shot = 0;
+    player2Shot = 0;
 }
     instance_destroy();
 

@@ -26,7 +26,7 @@
           <argument>
             <kind>1</kind>
             <string>//Variable inits
-globalvar gameStart, p1Point, p2Point, player1Shot, player2Shot, player1Ready, player2Ready levelNumber, p1Score, didP1Score, p2Score, didP2Score, menuOption, pointsToWin, lightingOn;
+globalvar roundTime, gameStart, p1Point, p2Point, player1Shot, player2Shot, player1Ready, player2Ready levelNumber, p1Score, didP1Score, p2Score, didP2Score, menuOption, pointsToWin, lightingOn, shakeOn;
 player1Shot = 0;
 player2Shot = 0;
 player1Ready = 0;
@@ -44,6 +44,8 @@ minMenuOptions = 0; //always 0
 maxMenuOptions = 6;
 pointsToWin = 3;
 lightingOn = 0;
+shakeOn = 0;
+roundTime = 0;
 
 //Deadzone (if it works)
 if gamepad_is_connected(0) gamepad_set_axis_deadzone(0, 0.25);
@@ -51,6 +53,33 @@ if gamepad_is_connected(1) gamepad_set_axis_deadzone(1, 0.25);
 
 
 
+</string>
+          </argument>
+        </arguments>
+      </action>
+    </event>
+    <event eventtype="2" enumb="2">
+      <action>
+        <libid>1</libid>
+        <id>603</id>
+        <kind>7</kind>
+        <userelative>0</userelative>
+        <isquestion>0</isquestion>
+        <useapplyto>-1</useapplyto>
+        <exetype>2</exetype>
+        <functionname></functionname>
+        <codestring></codestring>
+        <whoName>self</whoName>
+        <relative>0</relative>
+        <isnot>0</isnot>
+        <arguments>
+          <argument>
+            <kind>1</kind>
+            <string>if(gameStart = 1){
+    gameStart = 0;
+    player1Ready = 0;
+    player2Ready = 0;
+}
 </string>
           </argument>
         </arguments>
@@ -128,6 +157,9 @@ if gamepad_is_connected(1) gamepad_set_axis_deadzone(1, 0.25);
 if(room = rm_Create){
     room_goto(rm_Lobby);
 }
+
+roundTime = alarm[2]/300;
+
 //player win check and treating
 if(levelNumber != 0){
     if((p1Score &gt;= pointsToWin) &amp;&amp; ((gamepad_button_check_pressed(0, gp_shoulderrb)) || (gamepad_button_check_pressed(0, gp_shoulderlb)))){
@@ -239,6 +271,7 @@ if(levelNumber = 0){
     if((player1Ready = 1) &amp;&amp; (player2Ready = 1)){
         if(alarm[1]=-1){
             alarm[1]=75;
+            alarm[2]=room_speed*10;
         }
     }
 }
@@ -271,8 +304,9 @@ if(gameStart = 0){
         
         if((player1Ready = 1) &amp;&amp; (player2Ready = 1)){
             if(alarm[0]=-1){
-            alarm[0]=75;
+                alarm[0]=75;
             }
+            alarm[2]=room_speed*10;
         }
     }
 }
@@ -318,6 +352,11 @@ if ((gamepad_button_check_pressed(0, gp_select)) || gamepad_button_check_pressed
 //var dispV = display_get_height();
 //draw_text(0,0,string(dispH));
 //draw_text(60,0,string(dispV));
+
+// Draw roundTime
+if(gameStart = 1){
+    draw_text_transformed(room_width/2, room_height/2, string(roundTime), 4, 4, 0);
+}
 
 //Player ammo draws
 if(player1Shot = 1){
@@ -486,6 +525,35 @@ if(room != rm_Lobby){
             <kind>1</kind>
             <string>player1Ready = 1;
 player2Ready = 1;
+</string>
+          </argument>
+        </arguments>
+      </action>
+    </event>
+    <event eventtype="9" enumb="16">
+      <action>
+        <libid>1</libid>
+        <id>603</id>
+        <kind>7</kind>
+        <userelative>0</userelative>
+        <isquestion>0</isquestion>
+        <useapplyto>-1</useapplyto>
+        <exetype>2</exetype>
+        <functionname></functionname>
+        <codestring></codestring>
+        <whoName>self</whoName>
+        <relative>0</relative>
+        <isnot>0</isnot>
+        <arguments>
+          <argument>
+            <kind>1</kind>
+            <string>if(shakeOn = 0){
+    shakeOn = 1;
+}
+else{
+    shakeon = 0;
+}
+
 </string>
           </argument>
         </arguments>
