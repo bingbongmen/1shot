@@ -144,7 +144,6 @@ image_angle = point_direction(0, 0, hpoint, vpoint);
 
 //Saves P1s point direct
 global.p1Point = image_angle;
-
 </string>
           </argument>
         </arguments>
@@ -167,8 +166,10 @@ global.p1Point = image_angle;
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>alarm[0]=100
+            <string>if(gameStart = 1){
+alarm[0]=100
 gamepad_set_vibration(0, 1, 1);
+}
 </string>
           </argument>
         </arguments>

@@ -26,7 +26,7 @@
           <argument>
             <kind>1</kind>
             <string>//Variable inits
-globalvar gameStart, p1Point, p2Point, player1Shot, player2Shot, player1Ready, player2Ready levelNumber, p1Score, didP1Score, p2Score, didP2Score, menuOption, pointsToWin, lightingOn;
+globalvar gameStart, p1Point, p2Point, player1Shot, player2Shot, player1Ready, player2Ready levelNumber, p1Score, didP1Score, p2Score, didP2Score, menuOption, pointsToWin, lightingOn, shakeOn;
 player1Shot = 0;
 player2Shot = 0;
 player1Ready = 0;
@@ -44,6 +44,7 @@ minMenuOptions = 0; //always 0
 maxMenuOptions = 6;
 pointsToWin = 3;
 lightingOn = 0;
+shakeOn = 0;
 
 //Deadzone (if it works)
 if gamepad_is_connected(0) gamepad_set_axis_deadzone(0, 0.25);
@@ -486,6 +487,35 @@ if(room != rm_Lobby){
             <kind>1</kind>
             <string>player1Ready = 1;
 player2Ready = 1;
+</string>
+          </argument>
+        </arguments>
+      </action>
+    </event>
+    <event eventtype="9" enumb="16">
+      <action>
+        <libid>1</libid>
+        <id>603</id>
+        <kind>7</kind>
+        <userelative>0</userelative>
+        <isquestion>0</isquestion>
+        <useapplyto>-1</useapplyto>
+        <exetype>2</exetype>
+        <functionname></functionname>
+        <codestring></codestring>
+        <whoName>self</whoName>
+        <relative>0</relative>
+        <isnot>0</isnot>
+        <arguments>
+          <argument>
+            <kind>1</kind>
+            <string>if(shakeOn = 0){
+    shakeOn = 1;
+}
+else{
+    shakeon = 0;
+}
+
 </string>
           </argument>
         </arguments>

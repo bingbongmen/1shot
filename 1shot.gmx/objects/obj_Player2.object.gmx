@@ -166,8 +166,10 @@ global.p2Point = image_angle;
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>alarm[0]=100
+            <string>if(gameStart = 1){
+alarm[0]=100
 gamepad_set_vibration(1, 1, 1);
+}
 </string>
           </argument>
         </arguments>
