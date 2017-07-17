@@ -399,7 +399,7 @@ if(gameStart = 0){
         }
     }
     else{
-        if((p1Score) || (p2Score) &lt; pointsToWin){
+        if((p1Score || p2Score) &lt; pointsToWin){
                 if(player1Ready = 0){
                     draw_set_alpha(0.3);
                     draw_set_color(c_red);
