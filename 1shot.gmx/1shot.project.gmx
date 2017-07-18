@@ -52,11 +52,14 @@
     <object>objects\obj_p2Bullet</object>
     <object>objects\obj_Light</object>
     <object>objects\obj_Lighting</object>
+    <object>objects\obj_p1Spawn</object>
+    <object>objects\obj_p2Spawn</object>
   </objects>
   <rooms name="rooms">
     <room>rooms\rm_Create</room>
     <room>rooms\rm_Lobby</room>
     <room>rooms\rm_Level1</room>
+    <room>rooms\rm_Level2</room>
   </rooms>
   <help>
     <rtf>help.rtf</rtf>

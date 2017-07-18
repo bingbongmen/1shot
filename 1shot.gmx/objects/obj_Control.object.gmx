@@ -26,7 +26,7 @@
           <argument>
             <kind>1</kind>
             <string>//Variable inits
-globalvar gamepad0Connected, gamepad1Connected, roundTime, gameStart, p1Point, p2Point, player1Shot, player2Shot, player1Ready, player2Ready levelNumber, p1Score, didP1Score, p2Score, didP2Score, menuOption, pointsToWin, lightingOn, shakeOn;
+globalvar gamepad0Connected, gamepad1Connected, roundTime, gameStart, p1Point, p2Point, player1Shot, player2Shot, player1Ready, player2Ready levelNumber, p1Score, didP1Score, p2Score, didP2Score, menuOption, pointsToWin, lightingOn, shakeOn, levelSelect;
 player1Shot = 0;
 player2Shot = 0;
 player1Ready = 0;
@@ -48,7 +48,7 @@ shakeOn = 0;
 roundTime = 0;
 gamepad0Connected = 0;
 gamepad1Connected = 0;
-
+levelSelect = 1;
 
 
 </string>
@@ -100,10 +100,9 @@ gamepad1Connected = 0;
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>if((player1Ready = 1) &amp;&amp; (player2Ready = 1)){
-    levelNumber = 1;
-    room_goto(rm_Level1);
-}
+            <string>//if((player1Ready = 1) &amp;&amp; (player2Ready = 1)){  
+//}
+
 </string>
           </argument>
         </arguments>
@@ -227,6 +226,12 @@ if(levelNumber = 0){
                 pointsToWin = 1;
             }
         }
+        if(menuOption = 3){
+            levelSelect -= 1;
+            if(levelSelect &lt;= 0){
+                levelSelect = 1;
+            }
+        }
         if(menuOption = 5){
             if(instance_exists(obj_Lighting)){
             with(obj_Lighting){
@@ -245,6 +250,12 @@ if(levelNumber = 0){
         }
         if(menuOption = 2){
             pointsToWin += 1;
+        }
+        if(menuOption = 4){
+            levelSelect += 1;
+            if(levelSelect &gt;= 2){
+                levelSelect = 2;
+            }
         }
         if(menuOption = 6){
             if(!instance_exists(obj_Lighting)){
@@ -283,10 +294,13 @@ if(levelNumber = 0){
         player2Ready = 0;
     }
     if((player1Ready = 1) &amp;&amp; (player2Ready = 1)){
-        if(alarm[1]=-1){
-            alarm[1]=75;
-            alarm[2]=room_speed*10;
-        }
+        var levelGoTo = asset_get_index("rm_Level" + string(levelSelect));  
+        room_goto(levelGoTo);
+        levelNumber = levelSelect;
+        alarm[2]=room_speed*10;
+        //if(alarm[1]=-1){
+            //alarm[1]=75;
+        //}
     }
 }
 
@@ -477,6 +491,13 @@ if(levelNumber = 0){
     draw_text(216, 144,string(pointsToWin));
     draw_sprite(spr_arrowRight,0,320,128);
     draw_sprite(spr_arrowLeft,0,64,320);
+    draw_text(166,270,"Level");
+    if(levelSelect = 1){
+        draw_text(216, 338,"Bars");
+    }
+    if(levelSelect = 2){
+        draw_text(216, 338,"Arrows");
+    }
     draw_sprite(spr_arrowRight,0,320,320);
     draw_sprite(spr_arrowLeft,0,64,512);
     draw_text(166,464,"Lighting");
