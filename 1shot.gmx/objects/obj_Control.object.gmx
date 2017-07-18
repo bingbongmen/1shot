@@ -480,7 +480,12 @@ if(levelNumber = 0){
     draw_sprite(spr_arrowRight,0,320,320);
     draw_sprite(spr_arrowLeft,0,64,512);
     draw_text(166,464,"Lighting");
-    draw_text(216, 528,string(lightingOn));
+    if(lightingOn = 1){
+        draw_text(216, 528,"ON");
+    }
+    else{
+        draw_text(216, 528,"OFF");
+    }
     draw_sprite(spr_arrowRight,0,320,512);
     
     if(menuOption = 1){

@@ -13,9 +13,6 @@
     
 
 //##MENUS
-//@ Check when controllers plugged in and spawn char in respective spot
-    //@ dont allow game to start with less than two players
-//@ Make lighting option say ON/OFF not 1/0
 //@ Create pause menu
 
 //##GRAPHICS
