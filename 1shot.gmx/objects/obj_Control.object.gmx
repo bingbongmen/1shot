@@ -158,7 +158,7 @@ if(room = rm_Create){
     room_goto(rm_Lobby);
 }
 
-roundTime = alarm[2]/300;
+roundTime = alarm[2]/room_speed;
 
 //player win check and treating
 if(levelNumber != 0){

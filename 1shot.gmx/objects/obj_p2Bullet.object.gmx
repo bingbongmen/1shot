@@ -30,7 +30,7 @@ direction = global.p2Point;
 
 image_angle = direction;
 //Speed
-speed = 6;
+speed = 12;
 </string>
           </argument>
         </arguments>

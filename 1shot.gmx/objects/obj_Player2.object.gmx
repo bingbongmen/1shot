@@ -89,8 +89,8 @@ hpointSave = 0;
 vpointSave = 0;
 
 //player speed set from stick vars
-hspd = haxis*2.0;
-vspd = vaxis*2.0;
+hspd = haxis*4.0;
+vspd = vaxis*4.0;
 
 //Wall CC
 if(place_meeting(x+hspd, y, obj_Wall)){

@@ -6,6 +6,7 @@
     //Make everything like (screen_resh & screen_resw / 50) and stuff ya know
 // Game round timer
 // Screenshake on hit
+//Lower room speed
 
 //##GAMEPLAY
 //@ Add nicer char movement with friction or maybe too annoying???    
