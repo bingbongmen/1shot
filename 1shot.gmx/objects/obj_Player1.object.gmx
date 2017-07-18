@@ -87,10 +87,92 @@ hpoint = gamepad_axis_value(0, gp_axisrh);
 vpoint = gamepad_axis_value(0, gp_axisrv);
 hpointSave = 0;
 vpointSave = 0;
+hspd = 0;
+vspd = 0;
 
-//player speed set from stick vars
-hspd = haxis*4.0;
-vspd = vaxis*4.0;
+if(gamepad0Connected = 1){
+    //player speed set from stick vars
+    hspd = haxis*4.0;
+    vspd = vaxis*4.0;
+    
+    //Player shoot
+    if((gamepad_button_check_pressed(0, gp_shoulderrb)) || (gamepad_button_check_pressed(0, gp_shoulderlb))){
+        if((player1Shot &gt; 0))
+        {
+         instance_create(obj_Player1.x,obj_Player1.y,obj_p1Bullet);
+            player1Shot--;
+        }
+    }
+    
+    //Image rotation keeping
+    if(hpoint !=0){
+        hpointSave = hpoint;
+    }
+    if(hpoint=0){
+        hpoint = hpointSave;
+    }
+    if(vpoint !=0){
+        vpointSave = vpoint;
+    }
+    if(vpoint=0){
+        vpoint = vpointSave;
+    }
+    if(hpoint!=0 || vpoint!=0){
+        image_angle = point_direction(0, 0, hpoint, vpoint);
+    }
+}
+else{
+    //movement
+    if keyboard_check(ord('W')){
+        vspd = -3;
+    }
+    if keyboard_check(ord('S')){
+        vspd = 3;
+    }
+    if keyboard_check(ord('D')){
+        hspd = 3;
+    }
+    if keyboard_check(ord('A')){
+        hspd = -3;
+    }
+    //direction
+    if keyboard_check_pressed(vk_numpad6){
+        image_angle = 0;
+    }
+    if keyboard_check_pressed(vk_numpad9){
+        image_angle = 45;
+    }
+    if keyboard_check_pressed(vk_numpad8){
+        image_angle = 90;
+    }
+    if keyboard_check_pressed(vk_numpad7){
+        image_angle = 135;
+    }
+    if keyboard_check_pressed(vk_numpad4){
+        image_angle = 180;
+    }
+    if keyboard_check_pressed(vk_numpad1){
+        image_angle = 225;
+    }
+    if keyboard_check_pressed(vk_numpad2){
+        image_angle = 270;
+    }
+    if keyboard_check_pressed(vk_numpad3){
+        image_angle = 315;
+    }
+    if keyboard_check_pressed(vk_space){
+        if((player1Shot &gt; 0))
+        {
+            instance_create(obj_Player1.x,obj_Player1.y,obj_p1Bullet);
+            player1Shot--;
+        }
+    }
+    if keyboard_check_pressed(vk_enter){
+        if(gameStart = 0){
+            player1Ready = 1;
+        }
+    }
+}
 
 //Wall CC
 if(place_meeting(x+hspd, y, obj_Wall)){
@@ -115,31 +197,6 @@ if(place_meeting(x, y+vspd, obj_Wall)){
 
 y += vspd;
 
-//Player shoot
-if((gamepad_button_check_pressed(0, gp_shoulderrb)) || (gamepad_button_check_pressed(0, gp_shoulderlb))){
-    if((player1Shot &gt; 0))
-    {
-     instance_create(obj_Player1.x,obj_Player1.y,obj_p1Bullet);
-        player1Shot--;
-    }
-}
-
-//Image rotation keeping
-if(hpoint !=0){
-    hpointSave = hpoint;
-}
-if(hpoint=0){
-    hpoint = hpointSave;
-}
-if(vpoint !=0){
-    vpointSave = vpoint;
-}
-if(vpoint=0){
-    vpoint = vpointSave;
-}
-if(hpoint!=0 || vpoint!=0){
-image_angle = point_direction(0, 0, hpoint, vpoint);
-}
 
 
 //Saves P1s point direct

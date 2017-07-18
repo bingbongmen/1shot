@@ -26,7 +26,7 @@
           <argument>
             <kind>1</kind>
             <string>//Variable inits
-globalvar roundTime, gameStart, p1Point, p2Point, player1Shot, player2Shot, player1Ready, player2Ready levelNumber, p1Score, didP1Score, p2Score, didP2Score, menuOption, pointsToWin, lightingOn, shakeOn;
+globalvar gamepad0Connected, gamepad1Connected, roundTime, gameStart, p1Point, p2Point, player1Shot, player2Shot, player1Ready, player2Ready levelNumber, p1Score, didP1Score, p2Score, didP2Score, menuOption, pointsToWin, lightingOn, shakeOn;
 player1Shot = 0;
 player2Shot = 0;
 player1Ready = 0;
@@ -46,10 +46,8 @@ pointsToWin = 3;
 lightingOn = 0;
 shakeOn = 0;
 roundTime = 0;
-
-//Deadzone (if it works)
-if gamepad_is_connected(0) gamepad_set_axis_deadzone(0, 0.25);
-if gamepad_is_connected(1) gamepad_set_axis_deadzone(1, 0.25);
+gamepad0Connected = 0;
+gamepad1Connected = 0;
 
 
 
@@ -185,6 +183,22 @@ if(levelNumber != 0){
 }
 //Menu button selection var
 if(levelNumber = 0){
+    //gamepad connected checks
+    if(gamepad_is_connected(0)){
+        gamepad0Connected = 1;
+        gamepad_set_axis_deadzone(0, 0.25)
+    }
+    else{
+        gamepad0Connected = 0;
+    }
+    if(gamepad_is_connected(1)){
+        gamepad1Connected = 1;
+        gamepad_set_axis_deadzone(1, 0.25);
+    }
+    else{
+        gamepad1Connected = 0;
+    }
+    
     //option selects
     if((gamepad_button_check_pressed(0, gp_padd)) || (gamepad_button_check_pressed(1, gp_padd))){
         menuOption += 2;
@@ -487,6 +501,19 @@ if(levelNumber = 0){
     if(menuOption = 6){
         draw_sprite(spr_arrowRightS,0,320,512);
     }
+    if(gamepad_is_connected(0)){
+        draw_sprite(spr_Controller,0,864,352);
+    }
+    else{
+        draw_sprite(spr_Keyboard,0,864,352);
+    }
+    if(gamepad_is_connected(1)){
+        draw_sprite(spr_Controller,0,864,672);
+    }
+    else{
+        draw_sprite(spr_Keyboard,0,864,672);
+    }
+    
 }
 
 //Draw Winner text
@@ -501,30 +528,6 @@ if(room != rm_Lobby){
     }
 }
 
-</string>
-          </argument>
-        </arguments>
-      </action>
-    </event>
-    <event eventtype="9" enumb="32">
-      <action>
-        <libid>1</libid>
-        <id>603</id>
-        <kind>7</kind>
-        <userelative>0</userelative>
-        <isquestion>0</isquestion>
-        <useapplyto>-1</useapplyto>
-        <exetype>2</exetype>
-        <functionname></functionname>
-        <codestring></codestring>
-        <whoName>self</whoName>
-        <relative>0</relative>
-        <isnot>0</isnot>
-        <arguments>
-          <argument>
-            <kind>1</kind>
-            <string>player1Ready = 1;
-player2Ready = 1;
 </string>
           </argument>
         </arguments>
@@ -555,36 +558,6 @@ else{
 }
 
 </string>
-          </argument>
-        </arguments>
-      </action>
-    </event>
-    <event eventtype="9" enumb="13">
-      <action>
-        <libid>1</libid>
-        <id>201</id>
-        <kind>0</kind>
-        <userelative>-1</userelative>
-        <isquestion>0</isquestion>
-        <useapplyto>-1</useapplyto>
-        <exetype>1</exetype>
-        <functionname>action_create_object</functionname>
-        <codestring></codestring>
-        <whoName>self</whoName>
-        <relative>0</relative>
-        <isnot>0</isnot>
-        <arguments>
-          <argument>
-            <kind>10</kind>
-            <object>obj_levelRules</object>
-          </argument>
-          <argument>
-            <kind>0</kind>
-            <string>0</string>
-          </argument>
-          <argument>
-            <kind>0</kind>
-            <string>0</string>
           </argument>
         </arguments>
       </action>

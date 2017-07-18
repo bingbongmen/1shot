@@ -1,5 +1,4 @@
 //##GAME
-//@ Keyboard support of some kind
 //@ Make some AI to play and test solo?
 //@ Online play BOIIIII
 //@ Make sprite size/level size/game size fit natively on all screens based off resolution
