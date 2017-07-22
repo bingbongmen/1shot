@@ -49,85 +49,10 @@ roundTime = 0;
 gamepad0Connected = 0;
 gamepad1Connected = 0;
 levelSelect = 1;
+timer = ds_list_create();
+ds_list_add(timer,-1);
+ds_list_add(timer,-1);
 
-
-</string>
-          </argument>
-        </arguments>
-      </action>
-    </event>
-    <event eventtype="2" enumb="2">
-      <action>
-        <libid>1</libid>
-        <id>603</id>
-        <kind>7</kind>
-        <userelative>0</userelative>
-        <isquestion>0</isquestion>
-        <useapplyto>-1</useapplyto>
-        <exetype>2</exetype>
-        <functionname></functionname>
-        <codestring></codestring>
-        <whoName>self</whoName>
-        <relative>0</relative>
-        <isnot>0</isnot>
-        <arguments>
-          <argument>
-            <kind>1</kind>
-            <string>if(gameStart = 1){
-    gameStart = 0;
-    player1Ready = 0;
-    player2Ready = 0;
-}
-</string>
-          </argument>
-        </arguments>
-      </action>
-    </event>
-    <event eventtype="2" enumb="1">
-      <action>
-        <libid>1</libid>
-        <id>603</id>
-        <kind>7</kind>
-        <userelative>0</userelative>
-        <isquestion>0</isquestion>
-        <useapplyto>-1</useapplyto>
-        <exetype>2</exetype>
-        <functionname></functionname>
-        <codestring></codestring>
-        <whoName>self</whoName>
-        <relative>0</relative>
-        <isnot>0</isnot>
-        <arguments>
-          <argument>
-            <kind>1</kind>
-            <string>//if((player1Ready = 1) &amp;&amp; (player2Ready = 1)){  
-//}
-
-</string>
-          </argument>
-        </arguments>
-      </action>
-    </event>
-    <event eventtype="2" enumb="0">
-      <action>
-        <libid>1</libid>
-        <id>603</id>
-        <kind>7</kind>
-        <userelative>0</userelative>
-        <isquestion>0</isquestion>
-        <useapplyto>-1</useapplyto>
-        <exetype>2</exetype>
-        <functionname></functionname>
-        <codestring></codestring>
-        <whoName>self</whoName>
-        <relative>0</relative>
-        <isnot>0</isnot>
-        <arguments>
-          <argument>
-            <kind>1</kind>
-            <string>if((player1Ready = 1) &amp;&amp; (player2Ready = 1)){
-    instance_create(x,y,obj_levelRules);
-}
 </string>
           </argument>
         </arguments>
@@ -150,12 +75,41 @@ levelSelect = 1;
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>//init
+            <string>for(i=0; i&lt;ds_list_size(timer); i++)
+{
+    if(timer[| i]&gt;0)
+    {
+        timer[| i] -= delta_time;
+        if(timer[| i]&lt;0)
+        {
+            timer[| i] = 0;
+        }
+    }
+}
+if (timer[| 1]==0)
+{
+if(gameStart = 1){
+    gameStart = 0;
+    player1Ready = 0;
+    player2Ready = 0;
+}
+timer[| 1]= -1;
+}
+if (timer[| 0]==0)
+{
+if((player1Ready = 1) &amp;&amp; (player2Ready = 1)){
+    instance_create(x,y,obj_levelRules);
+}
+timer[| 0]= -1;
+}
+
+//init
 if(room = rm_Create){
     room_goto(rm_Lobby);
 }
 
-roundTime = alarm[2]/room_speed;
+
+roundTime = timer[| 1]/1000000;
 
 //player win check and treating
 if(levelNumber != 0){
@@ -297,7 +251,7 @@ if(levelNumber = 0){
         var levelGoTo = asset_get_index("rm_Level" + string(levelSelect));  
         room_goto(levelGoTo);
         levelNumber = levelSelect;
-        alarm[2]=room_speed*10;
+        timer[| 1]=1000000*10;
         //if(alarm[1]=-1){
             //alarm[1]=75;
         //}
@@ -331,10 +285,10 @@ if(gameStart = 0){
         }
         
         if((player1Ready = 1) &amp;&amp; (player2Ready = 1)){
-            if(alarm[0]=-1){
-                alarm[0]=75;
+            if(timer[| 0]=-1){
+                timer[| 0]=1000000*0.5;
             }
-            alarm[2]=room_speed*10;
+            timer[| 1]=1000000*10;
         }
     }
 }
@@ -349,6 +303,30 @@ if ((gamepad_button_check_pressed(0, gp_select)) || gamepad_button_check_pressed
         window_set_fullscreen(true);
     }
 }
+</string>
+          </argument>
+        </arguments>
+      </action>
+    </event>
+    <event eventtype="8" enumb="64">
+      <action>
+        <libid>1</libid>
+        <id>603</id>
+        <kind>7</kind>
+        <userelative>0</userelative>
+        <isquestion>0</isquestion>
+        <useapplyto>-1</useapplyto>
+        <exetype>2</exetype>
+        <functionname></functionname>
+        <codestring></codestring>
+        <whoName>self</whoName>
+        <relative>0</relative>
+        <isnot>0</isnot>
+        <arguments>
+          <argument>
+            <kind>1</kind>
+            <string>draw_set_colour(c_yellow);
+draw_text(0,0,"fps: "+ string(fps));
 </string>
           </argument>
         </arguments>
