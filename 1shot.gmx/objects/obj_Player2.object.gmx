@@ -74,7 +74,7 @@ image_angle = point_direction(0,0,obj_Player1.x,obj_Player1.y);
 }
 if (timer[| 0]==0)
 {
-gamepad_set_vibration(0, 0, 0);
+gamepad_set_vibration(1, 0, 0);
 timer[| 0]= -1;
 }
 
