@@ -6,6 +6,10 @@
   <NewExtensions/>
   <sounds name="sound">
     <sound>sound\sound_shot</sound>
+    <sound>sound\sound_Ready0</sound>
+    <sound>sound\sound_Ready1</sound>
+    <sound>sound\sound_Ready2</sound>
+    <sound>sound\sound_Ready3</sound>
   </sounds>
   <sprites name="sprites">
     <sprites name="Numbers">

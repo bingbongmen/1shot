@@ -26,7 +26,7 @@
           <argument>
             <kind>1</kind>
             <string>//Variable inits
-globalvar gamepad0Connected, gamepad1Connected, roundTime, gameStart, p1Point, p2Point, player1Shot, player2Shot, player1Ready, player2Ready levelNumber, p1Score, didP1Score, p2Score, didP2Score, menuOption, pointsToWin, lightingOn, shakeOn, levelSelect, cameraTarget;
+globalvar gamepad0Connected, gamepad1Connected, roundTime, gameStart, p1Point, p2Point, player1Shot, player2Shot, player1Ready, player2Ready levelNumber, p1Score, didP1Score, p2Score, didP2Score, menuOption, pointsToWin, lightingOn, shakeOn, levelSelect, cameraTarget, readyLevel;
 player1Shot = 0;
 player2Shot = 0;
 player1Ready = 0;
@@ -50,6 +50,7 @@ gamepad0Connected = 0;
 gamepad1Connected = 0;
 levelSelect = 1;
 cameraTarget = obj_Control;
+readyLevel = 0;
 timer = ds_list_create();
 ds_list_add(timer,-1);
 ds_list_add(timer,-1);
@@ -91,6 +92,7 @@ if (timer[| 1]==0)
 {
 if(gameStart = 1){
     gameStart = 0;
+    readyLevel = 0;
     player1Ready = 0;
     player2Ready = 0;
 }
@@ -98,10 +100,11 @@ timer[| 1]= -1;
 }
 if (timer[| 0]==0)
 {
-if((player1Ready = 1) &amp;&amp; (player2Ready = 1)){
-    instance_create(x,y,obj_levelRules);
-}
-timer[| 0]= -1;
+    if(readyLevel = 2){
+        audio_play_sound(sound_Ready3,100,0);
+        instance_create(x,y,obj_levelRules);
+    }
+    timer[| 0]= -1;
 }
 
 //init
@@ -243,18 +246,38 @@ if(levelNumber = 0){
 //Menu ready check
 if(levelNumber = 0){
     if(gamepad_button_check_pressed(0, gp_face1)){
-        player1Ready = 1;
+        if(player1Ready = 0){
+            readyLevel += 1;
+            var readySound = asset_get_index("sound_Ready" + string(readyLevel));
+            audio_play_sound(readySound,100,0);
+            player1Ready = 1;
+        }
     }
     if(gamepad_button_check_pressed(0, gp_face2)){
-        player1Ready = 0;
+        if(player1Ready = 1){
+            readyLevel -= 1;
+            var readySound = asset_get_index("sound_Ready" + string(readyLevel));
+            audio_play_sound(readySound,100,false);
+            player1Ready = 0;
+        }
     }
     if(gamepad_button_check_pressed(1, gp_face1)){
-        player2Ready = 1;
+        if(player2Ready = 0){
+            readyLevel += 1;
+            var readySound = asset_get_index("sound_Ready" + string(readyLevel));
+            audio_play_sound(readySound,100,0);
+            player2Ready = 1;
+        }
     }
     if(gamepad_button_check_pressed(1, gp_face2)){
-        player2Ready = 0;
+        if(player2Ready = 1){
+            readyLevel -= 1;
+            var readySound = asset_get_index("sound_Ready" + string(readyLevel));
+            audio_play_sound(readySound,100,0);
+            player2Ready = 0;
+        }
     }
-    if((player1Ready = 1) &amp;&amp; (player2Ready = 1)){
+    if(readyLevel = 2){
         var levelGoTo = asset_get_index("rm_Level" + string(levelSelect)); 
         room_goto(levelGoTo);
         instance_create(0,0,obj_bloodControl); 
@@ -270,31 +293,52 @@ if(levelNumber = 0){
 
 //Sets round to end if both players out of ammo and all shots completed
 if((player1Shot&lt;=0) &amp;&amp; (player2Shot&lt;=0) &amp;&amp; (instance_number(obj_p1Bullet)=0) &amp;&amp; (instance_number(obj_p2Bullet)=0) &amp;&amp; (gameStart = 1)){
+    readyLevel = 0;
     player1Ready = 0;
     player2Ready = 0;
     gameStart = 0;
 }
 
 //Ready Check if round is over
-if(gameStart = 0){
+if((gameStart = 0) &amp;&amp; (!levelNumber = 0)){
     if((p1Score &lt; pointsToWin) &amp;&amp; (p2Score &lt; pointsToWin)){
         if(gamepad_button_check_pressed(0, gp_face1)){
-            player1Ready = 1;
+            if(player1Ready = 0){
+                readyLevel += 1;
+                var readySound = asset_get_index("sound_Ready" + string(readyLevel));
+                audio_play_sound(readySound,100,0);
+                player1Ready = 1;
+            }
         }
         
         if(gamepad_button_check_pressed(0, gp_face2)){
-            player1Ready = 0;
+            if(player1Ready = 1){
+                readyLevel -= 1;
+                var readySound = asset_get_index("sound_Ready" + string(readyLevel));
+                audio_play_sound(readySound,100,false);
+                player1Ready = 0;
+            }
         }
         
         if(gamepad_button_check_pressed(1, gp_face1)){
-            player2Ready = 1;
+            if(player2Ready = 0){
+                readyLevel += 1;
+                var readySound = asset_get_index("sound_Ready" + string(readyLevel));
+                audio_play_sound(readySound,100,0);
+                player2Ready = 1;
+            }
         }
         
         if(gamepad_button_check_pressed(1, gp_face2)){
-            player2Ready = 0;
+            if(player2Ready = 1){
+                readyLevel -= 1;
+                var readySound = asset_get_index("sound_Ready" + string(readyLevel));
+                audio_play_sound(readySound,100,false);
+                player2Ready = 0;
+            }
         }
         
-        if((player1Ready = 1) &amp;&amp; (player2Ready = 1)){
+        if(readyLevel = 2){
             if(timer[| 0]=-1){
                 timer[| 0]=1000000*0.5;
             }
@@ -553,35 +597,6 @@ if(room != rm_Lobby){
         draw_text((room_width/2)-137,room_height/2,"Press a shoulder button to leave");
     }
 }
-</string>
-          </argument>
-        </arguments>
-      </action>
-    </event>
-    <event eventtype="9" enumb="16">
-      <action>
-        <libid>1</libid>
-        <id>603</id>
-        <kind>7</kind>
-        <userelative>0</userelative>
-        <isquestion>0</isquestion>
-        <useapplyto>-1</useapplyto>
-        <exetype>2</exetype>
-        <functionname></functionname>
-        <codestring></codestring>
-        <whoName>self</whoName>
-        <relative>0</relative>
-        <isnot>0</isnot>
-        <arguments>
-          <argument>
-            <kind>1</kind>
-            <string>if(shakeOn = 0){
-    shakeOn = 1;
-}
-else{
-    shakeon = 0;
-}
-
 </string>
           </argument>
         </arguments>
