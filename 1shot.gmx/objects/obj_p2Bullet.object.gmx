@@ -27,7 +27,7 @@
             <kind>1</kind>
             <string>//Pulls direction from p2s image angle
 direction = global.p2Point;
-
+global.bullet2Direction = direction;
 image_angle = direction;
 //Speed
 speed = 12;
@@ -103,7 +103,6 @@ speed = 12;
 if(gameStart = 1){
     gameStart = 0;
     p2Score++;
-    didP2Score = 1;
     player1Shot = 0;
     player2Shot = 0;
 }

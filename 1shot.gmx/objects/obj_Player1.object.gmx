@@ -234,7 +234,8 @@ global.p1Point = image_angle;
     gamepad_set_vibration(0, 1, 1);
     shakeOn = 1;
     sprite_index = spr_Invisible;
-    var count = random_range(4, 32);
+    didP2Score = 1;
+    var count = random_range(90, 160);
     for (var i = 0; i &lt; count; i++) {
         instance_create(obj_Player1.x + random_range(-8, 8), obj_Player1.y + random_range(-8, 8), obj_Blood);
     }
