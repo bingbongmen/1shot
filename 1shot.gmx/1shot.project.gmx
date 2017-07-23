@@ -4,7 +4,9 @@
     <Config>Configs\Default</Config>
   </Configs>
   <NewExtensions/>
-  <sounds name="sound"/>
+  <sounds name="sound">
+    <sound>sound\sound_shot</sound>
+  </sounds>
   <sprites name="sprites">
     <sprites name="Numbers">
       <sprite>sprites\spr_0</sprite>
