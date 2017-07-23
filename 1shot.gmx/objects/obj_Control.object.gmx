@@ -122,6 +122,9 @@ if(levelNumber != 0){
         obj_Player1.y = 160
         obj_Player2.x = 864
         obj_Player2.y = 896
+        with(obj_bloodControl){
+            instance_destroy();
+        }
         room_goto(rm_Lobby);        
     }
     if((p2Score &gt;= pointsToWin) &amp;&amp; ((gamepad_button_check_pressed(1, gp_shoulderrb)) || (gamepad_button_check_pressed(1, gp_shoulderlb)))){
@@ -132,6 +135,9 @@ if(levelNumber != 0){
         obj_Player2.x = 864
         obj_Player2.y = 896
         levelNumber = 0;
+        with(obj_bloodControl){
+            instance_destroy();
+        }
         room_goto(rm_Lobby);
     }
 }
@@ -249,8 +255,9 @@ if(levelNumber = 0){
         player2Ready = 0;
     }
     if((player1Ready = 1) &amp;&amp; (player2Ready = 1)){
-        var levelGoTo = asset_get_index("rm_Level" + string(levelSelect));  
+        var levelGoTo = asset_get_index("rm_Level" + string(levelSelect)); 
         room_goto(levelGoTo);
+        instance_create(0,0,obj_bloodControl); 
         levelNumber = levelSelect;
         obj_Control.x = room_width/2
         obj_Control.y = room_height/2
@@ -317,6 +324,7 @@ if ((gamepad_button_check_pressed(0, gp_select)) || gamepad_button_check_pressed
         window_set_fullscreen(true);
     }
 }
+
 </string>
           </argument>
         </arguments>

@@ -33,6 +33,8 @@
     <sprite>sprites\spr_P2</sprite>
     <sprite>sprites\spr_Keyboard</sprite>
     <sprite>sprites\spr_Controller</sprite>
+    <sprite>sprites\spr_Blood</sprite>
+    <sprite>sprites\spr_Invisible</sprite>
   </sprites>
   <backgrounds name="background"/>
   <paths name="paths"/>
@@ -54,6 +56,8 @@
     <object>objects\obj_Lighting</object>
     <object>objects\obj_p1Spawn</object>
     <object>objects\obj_p2Spawn</object>
+    <object>objects\obj_Blood</object>
+    <object>objects\obj_bloodControl</object>
   </objects>
   <rooms name="rooms">
     <room>rooms\rm_Create</room>
