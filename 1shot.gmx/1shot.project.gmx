@@ -10,6 +10,7 @@
     <sound>sound\sound_Ready1</sound>
     <sound>sound\sound_Ready2</sound>
     <sound>sound\sound_Ready3</sound>
+    <sound>sound\sound_Blood</sound>
   </sounds>
   <sprites name="sprites">
     <sprites name="Numbers">

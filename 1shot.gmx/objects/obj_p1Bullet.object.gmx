@@ -53,7 +53,7 @@ speed = 12;
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>speed = 12*delta_time*150/1000000;
+            <string>speed = 30*delta_time*150/1000000;
 
 </string>
           </argument>
@@ -102,6 +102,7 @@ speed = 12;
             <kind>1</kind>
             <string>//If in game add score and pull ready check
 if(gameStart = 1){
+    audio_play_sound(sound_Blood,100,0);
     gameStart = 0;
     p1Score++;
     player1Shot = 0;
