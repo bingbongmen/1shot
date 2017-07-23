@@ -236,7 +236,7 @@ global.p1Point = image_angle;
     readyLevel = 0;
     var readySound = asset_get_index("sound_Ready" + string(readyLevel));
     audio_play_sound(readySound,100,0);
-    timer[| 0]=0.5*1000000;
+    timer[| 0]=0.2*1000000;
     gamepad_set_vibration(0, 1, 1);
     shakeOn = 1;
     sprite_index = spr_Invisible;
