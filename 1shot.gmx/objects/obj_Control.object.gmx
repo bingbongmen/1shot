@@ -26,7 +26,7 @@
           <argument>
             <kind>1</kind>
             <string>//Variable inits
-globalvar gamepad0Connected, gamepad1Connected, roundTime, gameStart, p1Point, p2Point, player1Shot, player2Shot, player1Ready, player2Ready levelNumber, p1Score, didP1Score, p2Score, didP2Score, menuOption, pointsToWin, lightingOn, shakeOn, levelSelect;
+globalvar gamepad0Connected, gamepad1Connected, roundTime, gameStart, p1Point, p2Point, player1Shot, player2Shot, player1Ready, player2Ready levelNumber, p1Score, didP1Score, p2Score, didP2Score, menuOption, pointsToWin, lightingOn, shakeOn, levelSelect, cameraTarget;
 player1Shot = 0;
 player2Shot = 0;
 player1Ready = 0;
@@ -49,6 +49,7 @@ roundTime = 0;
 gamepad0Connected = 0;
 gamepad1Connected = 0;
 levelSelect = 1;
+cameraTarget = obj_Control;
 timer = ds_list_create();
 ds_list_add(timer,-1);
 ds_list_add(timer,-1);
@@ -251,6 +252,8 @@ if(levelNumber = 0){
         var levelGoTo = asset_get_index("rm_Level" + string(levelSelect));  
         room_goto(levelGoTo);
         levelNumber = levelSelect;
+        obj_Control.x = room_width/2
+        obj_Control.y = room_height/2
         timer[| 1]=1000000*10;
         //if(alarm[1]=-1){
             //alarm[1]=75;
@@ -291,6 +294,15 @@ if(gameStart = 0){
             timer[| 1]=1000000*10;
         }
     }
+}
+
+if(shakeOn = 0){
+    view_xview = round(((view_xview)*7+cameraTarget.x-(view_wview/2))/8);
+    view_yview = round(((view_yview)*7+cameraTarget.y-(view_hview/2))/8);
+}
+else{
+    view_xview += random_range (-3,3);
+    view_yview += random_range (-3,3);
 }
 
 //Fullscreen 
@@ -531,7 +543,6 @@ if(room != rm_Lobby){
         draw_text((room_width/2)-137,room_height/2,"Press a shoulder button to leave");
     }
 }
-
 </string>
           </argument>
         </arguments>

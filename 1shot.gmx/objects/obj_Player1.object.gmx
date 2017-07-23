@@ -72,10 +72,12 @@ image_angle = point_direction(0,0,obj_Player2.x,obj_Player2.y);
         }
     }
 }
+
 if (timer[| 0]==0)
 {
-gamepad_set_vibration(0, 0, 0);
-timer[| 0]= -1;
+    gamepad_set_vibration(0, 0, 0);
+    shakeOn = 0;
+    timer[| 0]= -1;
 }
 
 //controller stick vars
@@ -223,9 +225,11 @@ global.p1Point = image_angle;
           <argument>
             <kind>1</kind>
             <string>if(gameStart = 1){
-timer[| 0]=0.5*1000000;
-gamepad_set_vibration(0, 1, 1);
+    timer[| 0]=0.5*1000000;
+    gamepad_set_vibration(0, 1, 1);
+    shakeOn = 1;
 }
+
 </string>
           </argument>
         </arguments>
