@@ -4,7 +4,7 @@
   <solid>0</solid>
   <visible>-1</visible>
   <depth>0</depth>
-  <persistent>0</persistent>
+  <persistent>-1</persistent>
   <parentName>&lt;undefined&gt;</parentName>
   <maskName>&lt;undefined&gt;</maskName>
   <events>
@@ -25,27 +25,13 @@
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>//Vars to set at start of each map. 
-player1Shot = 1;
-player2Shot = 1;
-player1Ready = 0;
-player2Ready = 0;
-didP1Score = 0;
-didP2Score = 0;
-gameStart = 1;
-with(obj_Player1){
-    sprite_index = spr_Player1;
-}
-with(obj_Player2){
-    sprite_index = spr_Player2;
-}
-
+            <string>surf = surface_create(room_width, room_height);
 </string>
           </argument>
         </arguments>
       </action>
     </event>
-    <event eventtype="3" enumb="0">
+    <event eventtype="1" enumb="0">
       <action>
         <libid>1</libid>
         <id>603</id>
@@ -62,12 +48,34 @@ with(obj_Player2){
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>if(instance_exists(obj_p2Spawn)){
-    obj_Player1.x = obj_p1Spawn.x
-    obj_Player1.y = obj_p1Spawn.y
-    obj_Player2.x = obj_p2Spawn.x
-    obj_Player2.y = obj_p2Spawn.y
-    instance_destroy();
+            <string>surface_free(surf);
+</string>
+          </argument>
+        </arguments>
+      </action>
+    </event>
+    <event eventtype="8" enumb="0">
+      <action>
+        <libid>1</libid>
+        <id>603</id>
+        <kind>7</kind>
+        <userelative>0</userelative>
+        <isquestion>0</isquestion>
+        <useapplyto>-1</useapplyto>
+        <exetype>2</exetype>
+        <functionname></functionname>
+        <codestring></codestring>
+        <whoName>self</whoName>
+        <relative>0</relative>
+        <isnot>0</isnot>
+        <arguments>
+          <argument>
+            <kind>1</kind>
+            <string>if (surface_exists(surf)){
+    draw_surface(surf, 0, 0);
+}
+else{
+    surf = surface_create(room_width, room_height);
 }
 </string>
           </argument>
