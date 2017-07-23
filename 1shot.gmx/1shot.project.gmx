@@ -4,7 +4,9 @@
     <Config>Configs\Default</Config>
   </Configs>
   <NewExtensions/>
-  <sounds name="sound"/>
+  <sounds name="sound">
+    <sound>sound\sound_shot</sound>
+  </sounds>
   <sprites name="sprites">
     <sprites name="Numbers">
       <sprite>sprites\spr_0</sprite>
@@ -40,6 +42,7 @@
   <paths name="paths"/>
   <scripts name="scripts">
     <script>scripts\____THINGS_TO_DO____.gml</script>
+    <script>scripts\Attributions.gml</script>
   </scripts>
   <shaders name="shaders">
     <shader type="GLSLES">shaders\shd_multiply.shader</shader>
