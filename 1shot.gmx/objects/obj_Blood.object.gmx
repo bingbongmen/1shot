@@ -28,12 +28,12 @@
             <string>image_xscale = random_range(0.33, 1);
 image_yscale = image_xscale;
 if(didP1Score = 1){
-    movDir = random_range(global.bullet1Direction-30,global.bullet1Direction+30);
+    movDir = random_range(global.bullet1Direction-40,global.bullet1Direction+40);
 }
 if(didP2Score = 1){
-    movDir = random_range(global.bullet2Direction-30,global.bullet2Direction+30);
+    movDir = random_range(global.bullet2Direction-40,global.bullet2Direction+40);;
 }
-movSpd = random_range(30, 120);
+movSpd = random_range(1, 120);
 fric       = random_range(movSpd / 8, movSpd / 2);
 sizeChange = random_range(image_xscale / 10, image_xscale / 3); 
 stepTime = 0.05*1000000;
