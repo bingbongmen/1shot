@@ -3,9 +3,7 @@
 //@ Online play BOIIIII
 //@ Make sprite size/level size/game size fit natively on all screens based off resolution
     //Make everything like (screen_resh & screen_resw / 50) and stuff ya know
-// Screenshake on hit
-// Implement FPS unlocking
-
+    
 //##GAMEPLAY
 //@ Add nicer char movement with friction or maybe too annoying???    
 //@ Fix last pointed direction as it's not very flick friendly.
@@ -13,7 +11,7 @@
     
 
 //##MENUS
-//@ Create pause menu
+// Create pause menu
 //Draw level selected in background
 
 //##GRAPHICS
