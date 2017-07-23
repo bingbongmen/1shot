@@ -84,6 +84,8 @@ if (movSpd &gt; 0){
     image_alpha -= random_range(0.05, 0.1);
 }
 
+movSpd = scr_Approach(movSpd, 0, fric);
+
 if (instance_exists(obj_bloodControl)) {
     surface_set_target(obj_bloodControl.surf);
     draw_sprite_ext(spr_Blood, 0, x, y, image_xscale, image_yscale, image_angle, c_white, image_alpha);
