@@ -31,7 +31,7 @@ movDir = random(360);
 movSpd = random_range(3, 12);
 fric       = random_range(movSpd / 8, movSpd / 2);
 sizeChange = random_range(image_xscale / 10, image_xscale / 3); 
-stepTime = 0.03/1000000;
+stepTime = 0.05*1000000;
 deltaStepTime =0;
 </string>
           </argument>
