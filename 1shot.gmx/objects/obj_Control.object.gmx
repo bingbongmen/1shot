@@ -303,6 +303,8 @@ if(shakeOn = 0){
 else{
     view_xview += random_range (-3,3);
     view_yview += random_range (-3,3);
+    view_xview = round(((view_xview)*7+cameraTarget.x-(view_wview/2))/8);
+    view_yview = round(((view_yview)*7+cameraTarget.y-(view_hview/2))/8);
 }
 
 //Fullscreen 
